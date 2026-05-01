@@ -1,24 +1,14 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        Arrays.sort(nums);
+            int v = 0;
+            int c = 0;
 
-        int maxV = 0;
-        int maxC = 0;
-        int preV = nums[0];
-        int preC = 0;
-        
-        for(int n : nums) {
-            if(n != preV) {
-                if(maxC < preC) {
-                    maxC = preC;
-                    maxV = preV;
+            for(int n : nums) {
+                if(c == 0) {
+                    v = n;
                 }
-                preC = 1;
-                preV = n;
-            }else {
-                preC++;
+                c += n == v ? 1 : -1;
             }
-        }
-        return maxC > preC ? maxV : preV;
+            return v;
     }
 }
